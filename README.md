@@ -44,7 +44,7 @@
 
 # 1. Descrição do Projeto
 
-Este repositório apresenta a implementação de um **Analisador de Lógica Formal**, capaz de:
+Este repositório apresenta a implementação de um **Analisador de Lógica Formal,** capaz de:
 
 - Identificar automaticamente proposições atômicas;
 - Mapear conectivos lógicos;
@@ -52,7 +52,7 @@ Este repositório apresenta a implementação de um **Analisador de Lógica Form
 - Gerar a Tabela-Verdade completa, contendo 2ⁿ combinações possíveis;
 - Expandir fórmulas da Lógica de Predicados em domínio finito.
 
-O sistema foi desenvolvido em **Python**, adotando estrutura modular e princípios de organização de software.
+O sistema foi desenvolvido em **Python,** adotando estrutura modular e princípios de organização de software.
 
 ---
 
@@ -71,7 +71,7 @@ O projeto tem como objetivos principais:
 
 # 3. Especificação do Problema
 
-O programa recebe como entrada uma sentença lógica em **formato restrito**, evitando ambiguidades da linguagem natural.
+O programa recebe como entrada uma sentença lógica em **formato restrito,** evitando ambiguidades da linguagem natural.
 
 ## 3.1 Lógica Proposicional
 
@@ -155,7 +155,7 @@ A implementação fundamenta-se nos seguintes conceitos formais:
 - Quantificação universal e existencial;
 - Geração de Tabelas-Verdade com 2ⁿ combinações possíveis.
 
-O algoritmo de parsing utiliza o método **Shunting-yard**, garantindo a correta hierarquia operacional.
+O algoritmo de parsing utiliza o método **Shunting-yard,** garantindo a correta hierarquia operacional.
 
 A expansão de predicados em domínio finito permite compatibilizar Lógica de Primeira Ordem com avaliação proposicional computacional.
 
@@ -297,4 +297,5 @@ Projeto de finalidade exclusivamente acadêmica, desenvolvido no contexto da dis
 * **Raphael Câmara Sá** — [raphael.sa@discente.ufma.br](mailto:raphael.sa@discente.ufma.br)
 
 ````
+
 
