@@ -22,12 +22,13 @@
     <strong>Lógica e Matemática Discreta</strong>, do curso de Engenharia da Computação 
     da Universidade Federal do Maranhão.
     <br><br>
-    O objetivo do projeto é implementar um analisador automatizado de sentenças 
-    lógicas, aplicando os fundamentos da <strong>Lógica Proposicional e de Predicados</strong> 
-    por meio do desenvolvimento de um sistema computacional em Python.
+    O objetivo consiste na implementação de um analisador automatizado de sentenças 
+    lógicas, fundamentado nos princípios formais da <strong>Lógica Proposicional</strong> 
+    e da <strong>Lógica de Predicados</strong>, por meio do desenvolvimento de um sistema 
+    computacional em Python.
     <br><br>
     O desenvolvimento do código, aliado à documentação técnica apresentada neste 
-    repositório, corresponde às atividades avaliativas da disciplina.
+    repositório, compõe a avaliação prática da disciplina.
   </em>
 </p>
 
@@ -41,70 +42,126 @@
 
 ---
 
-## 1. Descrição do Projeto
+# 1. Descrição do Projeto
 
-Este repositório contém a implementação de um **Analisador de Lógica Formal**, capaz de:
+Este repositório apresenta a implementação de um **Analisador de Lógica Formal**, capaz de:
 
-- Identificar proposições atômicas;
+- Identificar automaticamente proposições atômicas;
 - Mapear conectivos lógicos;
-- Construir a estrutura sintática da expressão (AST);
-- Gerar automaticamente a Tabela-Verdade completa (2ⁿ linhas).
+- Construir a estrutura sintática da expressão (AST – *Abstract Syntax Tree*);
+- Gerar a Tabela-Verdade completa, contendo 2ⁿ combinações possíveis;
+- Expandir fórmulas da Lógica de Predicados em domínio finito.
 
-O sistema foi desenvolvido em **Python**, utilizando estrutura modular para organização do código.
-
----
-
-## 2. Objetivo
-
-O principal objetivo deste trabalho é:
-
-- Aplicar os fundamentos da Lógica Proposicional;
-- Implementar parsing de expressões lógicas;
-- Gerar automaticamente Tabelas-Verdade;
-- Desenvolver código modular e bem estruturado;
-- Produzir documentação técnica clara e coerente com a teoria estudada.
+O sistema foi desenvolvido em **Python**, adotando estrutura modular e princípios de organização de software.
 
 ---
 
-## 3. Especificação do Problema
+# 2. Objetivos
 
-O programa recebe como entrada uma sentença lógica em formato restrito, contendo:
+O projeto tem como objetivos principais:
 
-- Proposições atômicas (p, q, r, ...);
-- Conectivos lógicos:
-  - Negação (~)
-  - Conjunção (&)
-  - Disjunção (|)
-  - Implicação (->)
-  - Bicondicional (<->)
-- Parênteses para organização da precedência.
-
-A partir da expressão fornecida, o sistema:
-
-1. Realiza a tokenização da entrada;
-2. Constrói a árvore sintática (AST);
-3. Identifica proposições e conectivos utilizados;
-4. Gera a Tabela-Verdade correspondente.
+- Aplicar formalmente os fundamentos da Lógica Proposicional;
+- Implementar parsing sintático respeitando precedência de operadores;
+- Automatizar a geração de Tabelas-Verdade;
+- Implementar expansão de quantificadores da Lógica de Predicados;
+- Desenvolver código modular, validado e estruturado;
+- Produzir documentação técnica alinhada à fundamentação teórica.
 
 ---
 
-## 4. Fundamentos Teóricos
+# 3. Especificação do Problema
 
-A implementação baseia-se nos seguintes conceitos formais:
+O programa recebe como entrada uma sentença lógica em **formato restrito**, evitando ambiguidades da linguagem natural.
 
-- Proposições atômicas;
+## 3.1 Lógica Proposicional
+
+São aceitos:
+
+- Proposições atômicas: `p`, `q`, `r`, `p1`, etc.
+- Conectivos:
+  - Negação: `~`
+  - Conjunção: `&`
+  - Disjunção: `|`
+  - Implicação: `->`
+  - Bicondicional: `<->`
+- Parênteses: `(` e `)`
+
+### Exemplo
+
+```
+
+(p & q) -> (~r | p)
+
+```
+
+---
+
+## 3.2 Lógica de Predicados
+
+O sistema aceita fórmulas com quantificadores sob restrições formais:
+
+- Quantificadores: `forall x.` e `exists x.`
+- Variáveis: letras minúsculas (`x`, `y`, `z`)
+- Predicados: letras maiúsculas com argumentos, por exemplo:
+  - `P(x)`
+  - `Q(x,a)`
+  - `R(a,b)`
+
+### Domínio Finito
+
+Para permitir avaliação computacional via Tabela-Verdade, os quantificadores são expandidos em um domínio finito predefinido:
+
+```
+
+Domínio = {a, b}
+
+```
+
+### Expansão Formal
+
+- ∀x φ(x)  →  φ(a) ∧ φ(b)
+- ∃x φ(x)  →  φ(a) ∨ φ(b)
+
+Após a expansão, a fórmula torna-se proposicional e pode ser avaliada pelo sistema.
+
+### Exemplo
+
+Entrada:
+
+```
+
+exists x. (P(x) -> Q(x))
+
+```
+
+Expressão expandida:
+
+```
+
+((p_a -> q_a) | (p_b -> q_b))
+
+```
+
+---
+
+# 4. Fundamentação Teórica
+
+A implementação fundamenta-se nos seguintes conceitos formais:
+
+- Proposição atômica;
 - Conectivos lógicos (¬, ∧, ∨, →, ↔);
-- Precedência de operadores;
+- Regras de precedência;
 - Avaliação semântica de fórmulas;
-- Geração de Tabelas-Verdade (2ⁿ combinações possíveis).
+- Quantificação universal e existencial;
+- Geração de Tabelas-Verdade com 2ⁿ combinações possíveis.
 
-O algoritmo de parsing utiliza o método **Shunting-yard**, garantindo o respeito à precedência dos operadores.
+O algoritmo de parsing utiliza o método **Shunting-yard**, garantindo a correta hierarquia operacional.
+
+A expansão de predicados em domínio finito permite compatibilizar Lógica de Primeira Ordem com avaliação proposicional computacional.
 
 ---
 
-## 5. Organização do Código
-
-O projeto está estruturado da seguinte forma:
+# 5. Organização do Código
 
 ```
 
@@ -114,57 +171,49 @@ src/
 ├── ast_nodes.py
 ├── evaluator.py
 ├── truth_table.py
+├── predicate_expand.py
 └── cli.py
 
 ````
 
-Cada módulo possui responsabilidade específica:
+### Responsabilidades
 
-- **tokenizer.py** → análise léxica
-- **parser.py** → construção da AST
-- **evaluator.py** → avaliação lógica
-- **truth_table.py** → geração da tabela-verdade
-- **cli.py** → interface de execução
-
-Essa organização garante modularidade, legibilidade e manutenção facilitada.
+- `tokenizer.py` → análise léxica;
+- `parser.py` → construção da AST;
+- `ast_nodes.py` → estrutura formal da árvore sintática;
+- `evaluator.py` → avaliação semântica;
+- `truth_table.py` → geração da Tabela-Verdade;
+- `predicate_expand.py` → expansão de quantificadores;
+- `cli.py` → interface de execução.
 
 ---
 
-## 6. Como Executar o Programa
+# 6. Execução do Programa
 
-### Pré-requisitos
-- Python 3.x instalado
-- Terminal de comandos (CMD, PowerShell ou terminal do VS Code)
+## Pré-requisitos
 
-### Execução
+- Python 3.x
+- Terminal (CMD, PowerShell ou VS Code)
 
-1. Clone o repositório:
+## Execução
 
 ```bash
 git clone https://github.com/ahcorataner/analisador_logica_formal.git
 ````
 
-2. Acesse o diretório:
-
 ```bash
 cd analisador_logica_formal
 ```
-
-3. Execute o programa:
 
 ```bash
 python -m src.cli
 ```
 
-4. Digite a expressão lógica desejada, por exemplo:
-
-```
-(p & q) -> (~r | p)
-```
-
 ---
 
-## 7. Exemplo de Execução
+# 7. Exemplos de Execução
+
+## 7.1 Proposicional
 
 Entrada:
 
@@ -174,39 +223,78 @@ Entrada:
 
 Saída:
 
-* Lista de proposições identificadas;
-* Lista de conectivos utilizados;
-* Tabela-Verdade completa com 2ⁿ linhas.
+* Proposições identificadas;
+* Conectivos utilizados;
+* Tabela-Verdade completa.
 
 ---
 
-## 8. Tratamento de Erros
+## 7.2 Predicados
+
+Entrada:
+
+```
+forall x. P(x)
+```
+
+Saída:
+
+```
+(p_a & p_b)
+```
+
+Seguida da Tabela-Verdade correspondente.
+
+---
+
+# 8. Demonstração Visual da Execução
+
+## 8.1 Execução – Lógica Proposicional
+
+<p align="center">
+  <img src="imagens/exec_proposicional.png" alt="Execução Proposicional" width="850">
+</p>
+
+---
+
+## 8.2 Execução – Lógica de Predicados
+
+<p align="center">
+  <img src="imagens/exec_predicados.png" alt="Execução Predicados" width="850">
+</p>
+
+---
+
+# 9. Validação e Tratamento de Erros
 
 O sistema valida:
 
 * Parênteses desbalanceados;
 * Operadores em posições inválidas;
 * Caracteres não reconhecidos;
-* Expressões mal formadas.
+* Expressões mal formadas;
+* Uso incorreto de quantificadores.
 
 ---
 
-## 9. Considerações Finais
+# 10. Considerações Finais
 
-O desenvolvimento deste projeto permitiu integrar fundamentos teóricos da Lógica Formal com práticas de Engenharia de Software, reforçando a importância da automação na análise de estruturas matemáticas.
+O projeto integra rigor matemático e implementação computacional, demonstrando a aplicabilidade prática dos fundamentos da Lógica Formal na Engenharia da Computação.
 
----
-
-## 10. Licença
-
-Este projeto possui finalidade **exclusivamente acadêmica**, sendo desenvolvido para fins educacionais no contexto da disciplina de Lógica e Matemática Discreta da UFMA.
+A abordagem adotada garante clareza estrutural, modularização e coerência teórica.
 
 ---
 
-## 11. Contato
+# 11. Licença
+
+Projeto de finalidade exclusivamente acadêmica, desenvolvido no contexto da disciplina de Lógica e Matemática Discreta da UFMA.
+
+---
+
+# 12. Contato
 
 * **Renata Costa Rocha** — [renata.rocha@discente.ufma.br](mailto:renata.rocha@discente.ufma.br)
-* **Raphael Câmara Sá**
+* **Raphael Câmara Sá** — [raphael.sa@discente.ufma.br](mailto:raphael.sa@discente.ufma.br)
 
 ````
 
