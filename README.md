@@ -11,7 +11,7 @@
   <strong>Professor: Rondineli Seba</strong><br><br>
   <strong>Discentes:</strong><br>
   <strong>Renata Costa Rocha</strong> — Matrícula: 20240001556<br>
-  <strong>Raphael Câmara Sá</strong> — Matrícula: 20240001547
+  <strong>Raphael Camara Sá</strong> — Matrícula: 20240001547
 </p>
 
 <hr>
