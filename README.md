@@ -109,7 +109,7 @@ O sistema aceita fórmulas com quantificadores sob restrições formais:
 
 ### Domínio Finito
 
-Para permitir avaliação computacional via Tabela-Verdade, os quantificadores são expandidos em um domínio finito predefinido:
+Para permitir a avaliação computacional via Tabela-Verdade, os quantificadores são expandidos em um domínio finito predefinido:
 
 ```
 
