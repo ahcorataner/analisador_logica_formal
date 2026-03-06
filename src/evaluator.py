@@ -3,6 +3,7 @@ from .ast_nodes import Node, Var, Not, BinOp
 
 
 def eval_ast(node: Node, env: Dict[str, bool]) -> bool:
+
     if isinstance(node, Var):
         if node.name not in env:
             raise KeyError(f"Variável {node.name!r} não encontrada no ambiente.")
@@ -15,15 +16,16 @@ def eval_ast(node: Node, env: Dict[str, bool]) -> bool:
         a = eval_ast(node.left, env)
         b = eval_ast(node.right, env)
 
-        if node.op == "AND":
-            return a and b
-        if node.op == "OR":
-            return a or b
-        if node.op == "IMPLIES":
-            return (not a) or b
-        if node.op == "IFF":
-            return a == b
+        operations = {
+            "AND": lambda x, y: x and y,
+            "OR": lambda x, y: x or y,
+            "IMPLIES": lambda x, y: (not x) or y,
+            "IFF": lambda x, y: x == y,
+        }
 
-        raise ValueError(f"Operador desconhecido: {node.op}")
+        if node.op not in operations:
+            raise ValueError(f"Operador desconhecido: {node.op}")
 
-    raise TypeError("Nó AST desconhecido.")
+        return operations[node.op](a, b)
+
+    raise TypeError(f"Nó AST desconhecido: {type(node).__name__}")

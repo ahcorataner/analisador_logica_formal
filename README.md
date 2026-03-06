@@ -294,7 +294,7 @@ Projeto de finalidade exclusivamente acadêmica, desenvolvido no contexto da dis
 # 12. Contato
 
 * **Renata Costa Rocha** — [renata.rocha@discente.ufma.br](mailto:renata.rocha@discente.ufma.br)
-* **Raphael Câmara Sá** — [raphael.sa@discente.ufma.br](mailto:raphael.sa@discente.ufma.br)
+* **Raphael Camara Sá** — [raphael.sa@discente.ufma.br](mailto:raphael.sa@discente.ufma.br)
 
 ````
 
